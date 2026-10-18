@@ -19,7 +19,7 @@ import traben.entity_texture_features.features.state.ETFState;
 public class MixinRealCameraCore {
     // RealCamera builds its own vertex catcher, skips the normal entity render flow, and manually
     // submits the player via EntityRenderDispatcher.submit().
-//#if MC == 1.20.1 && !NEOFORGE || MC >= 1.21.1 && MC <= 1.21.4 && !FORGE || MC >= 26.1
+//#if MC == 1.20.1 && !NEOFORGE || MC >= 1.21.1 && MC <= 1.21.4 && !FORGE || MC >= 26.1 && MC <=26.3
 
     // The following methods invoke EntityRenderDispatcher.submit().
     @Inject(method = "computeCamera", at = @At("HEAD"))

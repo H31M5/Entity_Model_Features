@@ -184,15 +184,17 @@ dependencies {
     }
 
     if (!platform.isForge) {
-        val playerAnimVersions = arrayOf(
-            12109 to "1.1.0+alpha.1+mc.1.21.9",
-            12100 to "1.0.14+mc.1.21.1"
-        )
-        modComp("com.zigythebird.playeranim:PlayerAnimationLibCommon:", *playerAnimVersions)
-        modComp("com.zigythebird.playeranim:PlayerAnimationLibCore:", *playerAnimVersions)
+        if (mcVersion >= 12109) {
+            compileOnly("com.zigythebird.playeranim:PlayerAnimationLibCommon:1.1.0+alpha.1+mc.1.21.9")
+            compileOnly("com.zigythebird.playeranim:PlayerAnimationLibCore:1.1.0+alpha.1+mc.1.21.9")
+        } else if (mcVersion >= 12100) {
+            compileOnly("com.zigythebird.playeranim:PlayerAnimationLibCommon:1.0.14+mc.1.21.1")
+            compileOnly("com.zigythebird.playeranim:PlayerAnimationLibCore:1.0.14+mc.1.21.1")
+        }
     }
 
     modComp("maven.modrinth:real-camera:",
+        26_03_00 to ver ("ROhlZqcT" , null, "UlS34FcA"),
         26_02_00 to ver("FawEpnhn", null, "wfgL3JCe"),
         26_01_00 to ver("8iDFFsGL", null, "tPhOLg40"),
         1_21_04 to ver("ERGbfBFO", null, "j9j0EChP"),
