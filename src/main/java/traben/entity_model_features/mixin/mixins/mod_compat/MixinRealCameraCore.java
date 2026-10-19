@@ -12,13 +12,13 @@ import traben.entity_model_features.EMFManager;
 import traben.entity_model_features.models.animation.state.EMFEntityRenderState;
 import traben.entity_model_features.models.animation.state.EMFState;
 import traben.entity_texture_features.features.state.ETFState;
-//if MC >= 26.1 && MC <=26.3
+//#if MC >= 26.1 && MC <=26.3
 import net.minecraft.client.renderer.SubmitNodeCollector;
-//endif
+//#endif
 
-//if MC == 1.20.1 || MC >= 1.21.1 && MC <= 1.21.4
+//#if MC == 1.20.1 || MC >= 1.21.1 && MC <= 1.21.4
 //$$import net.minecraft.client.renderer.MultiBufferSource;
-//endif
+//#endif
 
 
 @Pseudo
@@ -43,34 +43,34 @@ public class MixinRealCameraCore {
     }
 
     @Inject(method = "renderCameraEntity", at = @At("HEAD"))
-//if MC >= 26.1 && MC <=26.3
+//#if MC >= 26.1 && MC <=26.3
     private static void EFM$onRenderCameraEntityHead(Minecraft client, float partialTicks, SubmitNodeCollector submitNodeCollector, Matrix4f modelView, CallbackInfo ci) {
-//endif
+//#endif
 
-//if MC >= 1.21.1 && MC <= 1.21.4
+//#if MC >= 1.21.1 && MC <= 1.21.4
 //$$private static void EFM$onRenderCameraEntityHead(Minecraft client, float partialTicks, MultiBufferSource bufferSource, Matrix4f modelView, CallbackInfo ci) {
-//endif
+//#endif
 
-//if MC == 1.20.1
+//#if MC == 1.20.1
 //$$private static void EFM$onRenderCameraEntityHead(Minecraft client, float partialTicks, MultiBufferSource bufferSource, CallbackInfo ci) {
-//endif
+//#endif
         EMFManager.getInstance().entityRenderCount++;
         var state = EMFEntityRenderState.manualPlayerState();
         if (state != null) ETFState.mount(state);
     }
 
     @Inject(method = "renderCameraEntity", at = @At("RETURN"))
-//if MC >= 26.1 && MC <=26.3
+//#if MC >= 26.1 && MC <=26.3
     private static void EFM$onRenderCameraEntityReturn(Minecraft client, float partialTicks, SubmitNodeCollector submitNodeCollector, Matrix4f modelView, CallbackInfo ci) {
-//endif
+//#endif
 
-//if MC >= 1.21.1 && MC <= 1.21.4
+//#if MC >= 1.21.1 && MC <= 1.21.4
 //$$private static void EFM$onRenderCameraEntityReturn(Minecraft client, float partialTicks, MultiBufferSource bufferSource, Matrix4f modelView, CallbackInfo ci) {
-//endif
+//#endif
 
-//if MC == 1.20.1
+//#if MC == 1.20.1
 //$$private static void EFM$onRenderCameraEntityReturn(Minecraft client, float partialTicks, MultiBufferSource bufferSource, CallbackInfo ci) {
-//endif
+//#endif
         var state = EMFState.state();
         if (state != null && state.isManualPlayerState()) ETFState.unMount();
     }
